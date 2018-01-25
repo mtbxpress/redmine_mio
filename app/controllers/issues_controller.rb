@@ -206,9 +206,12 @@ class IssuesController < ApplicationController
     end
   end
 
+#AQUI TENGO QUE HACER LA LLAMADA A LA API DE SIGILA
   # Updates the issue form when changing the project, status or tracker
   # on issue creation/update
   def update_form
+
+
   end
 
   # Bulk edit/copy a set of issues

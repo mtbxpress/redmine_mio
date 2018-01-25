@@ -1,7 +1,15 @@
+<!-- JJ FORMULARIO EDITAR ISSUE  -->
 <%= labelled_form_for @issue, :html => {:id => 'issue-form', :multipart => true} do |f| %>
     <%= error_messages_for 'issue', 'time_entry' %>
     <%= render :partial => 'conflict' if @conflict %>
     <div class="box">
+
+        <fieldset class="tabular"></legend>
+        <div id="all_attributes">
+        <h1>rrrrrrrrrrrrrrrrrrrrrrrrrrr</h1>
+        </div>
+        </fieldset>    
+
     <% if @edit_allowed || !@allowed_statuses.empty? %>
         <fieldset class="tabular"><legend><%= l(:label_change_properties) %></legend>
         <div id="all_attributes">
