@@ -1,7 +1,17 @@
 <%= render :partial => 'action_menu' %>
 
 <h2><%= issue_heading(@issue) %></h2>
+
+
+
+
 <h2>HOLA MUNDO</h2> <!-- JJ -->
+<%= "ddadad#{@response}" %>
+
+
+
+
+
 <div class="<%= @issue.css_classes %> details">
   <% if @prev_issue_id || @next_issue_id %>
     <div class="next-prev-links contextual">

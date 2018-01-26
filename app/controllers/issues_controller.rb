@@ -1,3 +1,5 @@
+require 'net/http'
+require 'uri'
 # Redmine - project management software
 # Copyright (C) 2006-2013  Jean-Philippe Lang
 #
@@ -14,6 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+# JJ CAMBIOS
+
+
+
+
 
 class IssuesController < ApplicationController
   menu_item :new_issue, :only => [:new, :create]
@@ -198,13 +206,82 @@ class IssuesController < ApplicationController
         format.html { redirect_back_or_default issue_path(@issue) }
         format.api  { render_api_ok }
       end
+
+      mi_metodo
+    
     else
       respond_to do |format|
         format.html { render :action => 'edit' }
         format.api  { render_validation_errors(@issue) }
       end
     end
+    
   end
+
+def mi_metodo
+##################################################################################
+# FUNCIONA EN SINATRA
+#  begin
+#    uri = URI('http://api.stackexchange.com/2.2/questions?site=stackoverflow')
+    #uri = URI('https://rubygems.org/api/v1/versions/httparty.json')
+#    Net::HTTP.start(uri.host, uri.port) do |http|
+#      request = Net::HTTP::Get.new uri
+   #  response = http.request request # Net::HTTPResponse object
+          # Any exceptions in here... 
+#    end
+#  rescue
+#          puts "Algo ha fallado!"
+#  end
+##################################################################################
+uri = URI('http://www.example.com/search.cgi')
+res = Net::HTTP.post_form(uri, 'q' => ['ruby', 'perl'], 'max' => '50')
+puts res.body
+  
+#response.body
+
+#  uri = URI.parse("https://rubygems.org/api/v1/versions/httparty.json")
+#  request = Net::HTTP::Post.new(uri)
+
+#uri = URI('http://example.com/some_path?query=string')
+#Net::HTTP.start(uri.host, uri.port) do |http|
+#  request = Net::HTTP::Get.new(uri)
+
+ # response = http.request request # Net::HTTPResponse object
+#end
+###############
+
+  #request.set_form_data(
+  #  "arg" => "val",
+  #  "arg2" => "val2",
+  #)
+
+  #req_options = {
+  #  use_ssl: uri.scheme == "https",
+  #}
+
+#  response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+#    http.request(request)
+#  end
+
+############ NO SE CUELGA
+#uri = URI.parse("http://google.com/")
+
+# Shortcut
+#@response = Net::HTTP.get_response(uri)
+
+# Will print response.body
+#Net::HTTP.get_print(uri)
+
+# Full
+#http = Net::HTTP.new(uri.host, uri.port)
+#@response = http.request(Net::HTTP::Get.new(uri.request_uri))
+
+###############
+
+  # response.code
+  # response.body  
+end
+
 
 #AQUI TENGO QUE HACER LA LLAMADA A LA API DE SIGILA
   # Updates the issue form when changing the project, status or tracker
